@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+New Feedback
+{% endblock %}
+{% block content %}
+
+<h1>Add Feedback</h1>
+<form>
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden'%}
+    <p>
+        {{field.label}}
+        {{field}}
+
+        {% for err in field.errors %}
+        {{err}}
+        {% endfor %}
+    </p>
+    {% endfor %}
+    <button formmethod="POST" formaction="/users/{{feedback.username}}">Submit New Feedback</button>
+    <button formmethod="GET" formaction="/">Home</button>
+</form>
+
+{% endblock %}
